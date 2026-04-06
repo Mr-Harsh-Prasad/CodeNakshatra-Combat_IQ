@@ -20,9 +20,6 @@ import type { FighterSnapshot } from './components/FightTracker';
 import { CoachOverlay } from './components/CoachOverlay';
 import { VideoAnalyzer } from './components/VideoAnalyzer';
 import { KickCounter } from './components/KickCounter';
-import { LandingPage } from './pages/LandingPage';
-import { ModeSelection } from './pages/ModeSelection';
-import { DashboardLayout } from './layouts/DashboardLayout';
 
 import type { TKDMetrics } from './utils/tkd-math';
 import { getGrandmastersVerdict, getComparativeAnalysis, getCornerAdvice } from './utils/CoachBrain';
@@ -379,34 +376,122 @@ const App: React.FC = () => {
   };
 
   if (mainView === 'landing') {
-    return <LandingPage onLaunch={() => setMainView('mode')} />;
+    return (
+      <div className="min-h-screen flex flex-col relative text-white overflow-x-hidden antialiased bg-slate-950">
+        <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-950 to-slate-950 -z-10 animate-pulse-slow" />
+        
+        <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[calc(100%-3rem)] max-w-6xl flex justify-between items-center px-6 py-4 rounded-2xl bg-slate-900/40 backdrop-blur-xl border border-white/10 shadow-2xl z-50">
+          <div className="flex items-center gap-2">
+            <Zap size={24} className="text-blue-400" />
+            <span className="font-display font-bold text-xl tracking-tight text-white">Combat IQ</span>
+          </div>
+          <div className="flex items-center gap-6">
+            <button onClick={() => setMainView('mode')} className="px-6 py-2 rounded-xl text-sm font-bold transition-all bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:-translate-y-0.5">
+              Launch App
+            </button>
+          </div>
+        </nav>
+
+        <main className="flex-1 flex flex-col items-center justify-center text-center px-6 pt-32 pb-20 max-w-5xl mx-auto">
+          <div className="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-8 animate-[slideUpFadeIn_0.8s_ease-out]">
+            AI-POWERED SPORTS TECH
+          </div>
+          
+          <h1 className="font-display font-extrabold text-5xl md:text-7xl leading-tight mb-6 animate-[slideUpFadeIn_0.8s_ease-out_0.1s_both]">
+            Unleash Your <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 drop-shadow-[0_0_30px_rgba(59,130,246,0.3)]">True Potential</span>
+          </h1>
+          
+          <p className="text-lg md:text-xl text-slate-400 max-w-2xl mb-12 animate-[slideUpFadeIn_0.8s_ease-out_0.2s_both]">
+            Train Taekwondo with AI-powered real-time computer vision. Analyze your kicks, perfect your form, and get instant feedback like never before.
+          </p>
+
+          <button onClick={() => setMainView('mode')} className="flex items-center gap-2 px-8 py-4 rounded-2xl text-lg font-bold transition-all bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-[0_0_30px_rgba(59,130,246,0.4)] hover:shadow-[0_0_40px_rgba(59,130,246,0.6)] hover:-translate-y-1 animate-[slideUpFadeIn_0.8s_ease-out_0.3s_both]">
+            <Play size={20} className="fill-current" /> Start Training
+          </button>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-24 w-full animate-[slideUpFadeIn_0.8s_ease-out_0.4s_both]">
+            <div className="bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:-translate-y-2 transition-all hover:border-blue-500/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4),0_0_20px_rgba(59,130,246,0.1)] text-left flex flex-col items-center md:items-start text-center md:text-left">
+              <Camera size={40} className="text-blue-400 mb-6" />
+              <h3 className="text-xl font-bold font-display mb-2">Real-time Feedback</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">Sub-millisecond latency pose detection accurately capturing your full body mechanics.</p>
+            </div>
+            <div className="bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:-translate-y-2 transition-all hover:border-purple-500/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4),0_0_20px_rgba(167,139,250,0.1)] text-left flex flex-col items-center md:items-start text-center md:text-left">
+              <Swords size={40} className="text-purple-400 mb-6" />
+              <h3 className="text-xl font-bold font-display mb-2">Fight Analyzer</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">Analyze sparring matches with frame-by-frame breakdown and corner advice AI.</p>
+            </div>
+            <div className="bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:-translate-y-2 transition-all hover:border-emerald-500/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4),0_0_20px_rgba(16,185,129,0.1)] text-left flex flex-col items-center md:items-start text-center md:text-left">
+              <Brain size={40} className="text-emerald-400 mb-6" />
+              <h3 className="text-xl font-bold font-display mb-2">AI Grandmaster</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">Receive personalized verbal and text correction prompts generated precisely for your style.</p>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
   }
 
   if (mainView === 'mode') {
     return (
-      <ModeSelection 
-        onBack={() => setMainView('landing')} 
-        onSelectMode={(mode) => { setActiveTab(mode as Tab); setMainView('dashboard'); }} 
-      />
+      <div className="min-h-screen flex flex-col relative text-white overflow-x-hidden antialiased bg-slate-950">
+        <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-950 to-slate-950 -z-10 animate-pulse-slow" />
+        
+        <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[calc(100%-3rem)] max-w-6xl flex justify-between items-center px-6 py-4 rounded-2xl bg-slate-900/40 backdrop-blur-xl border border-white/10 shadow-2xl z-50">
+          <button onClick={() => setMainView('landing')} className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors font-semibold">
+            <ArrowLeft size={18} /> Home
+          </button>
+          <div className="flex items-center gap-2">
+            <Zap size={20} className="text-blue-400" />
+            <span className="font-display font-bold text-lg tracking-tight text-white">Combat IQ</span>
+          </div>
+        </nav>
+
+        <main className="flex-1 flex flex-col items-center justify-center px-6 pt-32 pb-20 max-w-5xl mx-auto w-full">
+          <div className="text-center mb-16 animate-[slideUpFadeIn_0.5s_ease-out]">
+            <h2 className="font-display font-extrabold text-4xl md:text-5xl mb-4">Select <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Mode</span></h2>
+            <p className="text-slate-400 text-lg">Choose your desired drill to begin AI motion capture</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full animate-[slideUpFadeIn_0.6s_ease-out]">
+            <div onClick={() => { setActiveTab('live'); setMainView('dashboard'); }} className="cursor-pointer bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:-translate-y-3 transition-all duration-300 hover:border-blue-500/40 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_30px_rgba(59,130,246,0.15)] flex flex-col items-center text-center group">
+              <div className="w-24 h-24 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-500/10 group-hover:border-blue-500/30 transition-all duration-300">
+                <Camera size={40} className="text-blue-400" />
+              </div>
+              <h3 className="text-2xl font-bold font-display mb-3">Live Coach</h3>
+              <p className="text-slate-400 text-sm leading-relaxed mb-8 flex-1">Analyze your kicking technique, speed, and biomechanical angles in real-time.</p>
+              <button className="w-full py-3 rounded-xl text-sm font-bold bg-white/5 hover:bg-white/10 transition-colors border border-white/10 group-hover:border-blue-500/30 group-hover:bg-blue-500/10 group-hover:text-blue-300">Select Mode</button>
+            </div>
+
+            <div onClick={() => { setActiveTab('fight'); setMainView('dashboard'); }} className="cursor-pointer bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:-translate-y-3 transition-all duration-300 hover:border-red-500/40 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_30px_rgba(239,68,68,0.15)] flex flex-col items-center text-center group">
+              <div className="w-24 h-24 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-red-500/10 group-hover:border-red-500/30 transition-all duration-300">
+                <Swords size={40} className="text-red-400" />
+              </div>
+              <h3 className="text-2xl font-bold font-display mb-3">Fight Analyzer</h3>
+              <p className="text-slate-400 text-sm leading-relaxed mb-8 flex-1">Upload sparring matches or practice full poomsae with step-by-step review and corner advice.</p>
+              <button className="w-full py-3 rounded-xl text-sm font-bold bg-white/5 hover:bg-white/10 transition-colors border border-white/10 group-hover:border-red-500/30 group-hover:bg-red-500/10 group-hover:text-red-300">Select Mode</button>
+            </div>
+
+            <div onClick={() => { setActiveTab('analytics'); setMainView('dashboard'); }} className="cursor-pointer bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:-translate-y-3 transition-all duration-300 hover:border-emerald-500/40 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_30px_rgba(16,185,129,0.15)] flex flex-col items-center text-center group">
+              <div className="w-24 h-24 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-emerald-500/10 group-hover:border-emerald-500/30 transition-all duration-300">
+                <BarChart2 size={40} className="text-emerald-400" />
+              </div>
+              <h3 className="text-2xl font-bold font-display mb-3">Player Analytics</h3>
+              <p className="text-slate-400 text-sm leading-relaxed mb-8 flex-1">Track long-term progression, manage athletes, and compare performance metrics over time.</p>
+              <button className="w-full py-3 rounded-xl text-sm font-bold bg-white/5 hover:bg-white/10 transition-colors border border-white/10 group-hover:border-emerald-500/30 group-hover:bg-emerald-500/10 group-hover:text-emerald-300">Select Mode</button>
+            </div>
+          </div>
+        </main>
+      </div>
     );
   }
 
   return (
-    <DashboardLayout
-      activeTab={activeTab}
-      setActiveTab={(tab) => { setActiveTab(tab); setIsFighting(false); setIsTracking(false); }}
-      onBackToMenu={() => setMainView('mode')}
-      liveMode={liveMode}
-      onSwitchLiveMode={switchLiveMode}
-      isTracking={isTracking}
-      onToggleTracking={toggleTracking}
-      isFighting={isFighting}
-      onStartFight={startFight}
-      onStopFight={stopFight}
-      isMicOn={isMicOn}
-      onToggleMic={toggleMic}
-      transcript={transcript}
-    >
+    <div className="min-h-screen flex flex-col relative text-white overflow-x-hidden antialiased">
+      {/* Dynamic Animated Background */}
+      <div className="fixed inset-0 bg-slate-950 -z-20" />
+      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-950 to-slate-950 -z-10 animate-pulse-slow" />
+
       {/* ── DELETE CONFIRMATION DIALOG ── */}
       {deleteDialog.open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(8px)' }}>
@@ -439,7 +524,92 @@ const App: React.FC = () => {
       )}
 
 
+      <header className="px-8 py-4 flex items-center justify-between border-b border-white/10 bg-slate-900/50 backdrop-blur-2xl relative z-20 shadow-lg">
+        <div className="flex items-center gap-6">
+          <button onClick={() => setMainView('mode')} className="mr-2 p-2 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10 text-slate-400 hover:text-white" title="Return to Menu">
+            <ArrowLeft size={20} />
+          </button>
+          
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold text-base font-display shadow-lg border border-white/20" style={{ background: 'linear-gradient(135deg, #e63946, #3a86ff)', boxShadow: '0 0 30px rgba(58, 134, 255, 0.4)' }}>TKD</div>
+            <div>
+              <h1 className="font-display font-extrabold text-2xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 drop-shadow-sm">Combat IQ</h1>
+              <p className="text-[10px] text-blue-400 uppercase tracking-[0.2em] font-bold mt-0.5">AI Taekwondo Coach</p>
+            </div>
+          </div>
 
+          <div className="h-8 w-px bg-white/10 hidden lg:block" />
+
+          {/* Tabs */}
+          <div className="hidden lg:flex p-1.5 rounded-2xl bg-slate-800/50 backdrop-blur-md border border-white/10 shadow-inner">
+            <button onClick={() => {setActiveTab('live'); setIsFighting(false);}} className={`flex items-center gap-2 px-6 py-2 rounded-xl text-xs font-bold transition-all duration-300 ${activeTab === 'live' ? 'bg-blue-500/20 text-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.2)] border border-blue-500/30' : 'text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent'}`}>
+              <Camera size={16} /> Live Coach
+            </button>
+            <button onClick={() => {setActiveTab('analytics'); setIsTracking(false); setIsFighting(false);}} className={`flex items-center gap-2 px-6 py-2 rounded-xl text-xs font-bold transition-all duration-300 ${activeTab === 'analytics' ? 'bg-emerald-500/20 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.2)] border border-emerald-500/30' : 'text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent'}`}>
+              <BarChart2 size={16} /> Player Analytics
+            </button>
+            <button onClick={() => {setActiveTab('fight'); setIsTracking(false);}} className={`flex items-center gap-2 px-6 py-2 rounded-xl text-xs font-bold transition-all duration-300 ${activeTab === 'fight' ? 'bg-red-500/20 text-red-400 shadow-[0_0_20px_rgba(239,68,68,0.2)] border border-red-500/30' : 'text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent'}`}>
+              <Swords size={16} /> Fight Analyzer
+            </button>
+          </div>
+
+          {/* Camera / Video sub-mode toggle — only visible on Live tab */}
+          {activeTab === 'live' && (
+            <div className="hidden lg:flex p-1 rounded-xl bg-slate-800/40 backdrop-blur-md border border-white/10">
+              <button
+                onClick={() => switchLiveMode('camera')}
+                className={`flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 ${
+                  liveMode === 'camera'
+                    ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                    : 'text-slate-500 hover:text-slate-300 border border-transparent'
+                }`}
+              >
+                <Camera size={13} /> Camera
+              </button>
+              <button
+                onClick={() => switchLiveMode('video')}
+                className={`flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 ${
+                  liveMode === 'video'
+                    ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
+                    : 'text-slate-500 hover:text-slate-300 border border-transparent'
+                }`}
+              >
+                <Film size={13} /> Video
+              </button>
+            </div>
+          )}
+        </div>
+
+        <div className="flex items-center gap-3">
+          {activeTab === 'live' && isTracking && <span className="badge-live">LIVE</span>}
+          {activeTab === 'fight' && isFighting && <span className="badge-live" style={{ background: 'rgba(230, 57, 70, 0.2)', color: '#e63946', borderColor: 'rgba(230, 57, 70, 0.3)' }}>SPARRING</span>}
+          {transcript && <span className="text-xs text-blue-300 italic max-w-[120px] truncate">"{transcript}"</span>}
+
+          <button onClick={toggleMic} className={`flex items-center justify-center w-9 h-9 rounded-lg border transition-all duration-200 ${isMicOn ? 'bg-blue-500/20 border-blue-500/50 text-blue-400' : 'bg-white/5 border-white/10 text-gray-500 hover:text-gray-300'}`}>
+            {isMicOn ? <Mic size={15} /> : <MicOff size={15} />}
+          </button>
+
+          {activeTab === 'live' && (
+            <button
+              onClick={toggleTracking}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${isTracking ? 'bg-red-500/20 text-red-400 border border-red-500/30' : 'text-white border border-blue-500/40'}`}
+              style={isTracking ? {} : { background: 'linear-gradient(135deg, #3a86ff, #e63946)', boxShadow: '0 0 18px rgba(58, 134, 255, 0.35)' }}
+            >
+              {isTracking ? <><CameraOff size={15} /> Stop Session</> : <><Camera size={15} /> Start Training</>}
+            </button>
+          )}
+
+          {activeTab === 'fight' && (
+            <button
+              onClick={() => isFighting ? stopFight() : startFight()}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${isFighting ? 'bg-gray-800 text-gray-400 border border-gray-700' : 'text-white border border-red-500/40'}`}
+              style={isFighting ? {} : { background: 'linear-gradient(135deg, #e63946, #f97316)', boxShadow: '0 0 18px rgba(230, 57, 70, 0.35)' }}
+            >
+              {isFighting ? <><CameraOff size={15} /> Stop Match</> : <><Swords size={15} /> Start Match</>}
+            </button>
+          )}
+        </div>
+      </header>
 
       {/* ── MAIN LAYOUT ── */}
       {activeTab === 'live' && liveMode === 'camera' && (
@@ -975,7 +1145,7 @@ const App: React.FC = () => {
         </main>
       )}
 
-    </DashboardLayout>
+    </div>
   );
 };
 

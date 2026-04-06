@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Camera | Combat IQ</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="camera-body">
+    <div class="bg-glow-wrapper">
+        <div class="bg-glow blob-2"></div>
+    </div>
+    
+    <nav class="navbar glass-panel absolute-top">
+        <div class="nav-brand" style="display: flex; align-items: center; gap: 1.5rem;">
+            <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.5rem;" title="Go back to Home Page">
+                <i class="fa-solid fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="mode.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.5rem;" title="Go back to Mode Selection">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Modes</span>
+            </a>
+        </div>
+        <div class="session-info">
+            <span class="badge warning" id="status-badge" style="margin-bottom: 0;"><i class="fa-solid fa-circle fa-beat status-dot"></i> Standby</span>
+        </div>
+    </nav>
+
+    <main class="camera-container">
+        <div class="video-frame">
+            <!-- Simulated Video Element -->
+            <div class="video-placeholder" id="video-feed">
+                <i class="fa-solid fa-camera user-camera-icon"></i>
+                <p class="instruction-text fade-in-up">Stand inside the frame to begin</p>
+                
+                <!-- Loading Animation Overlay -->
+                <div class="loading-overlay hidden" id="loading-overlay">
+                    <div class="spinner"></div>
+                    <p class="mt-4" style="font-weight: 500; letter-spacing: 1px;">Initializing Vision Model...</p>
+                </div>
+            </div>
+
+            <!-- Overlays (Hidden initially) -->
+            <div class="ui-overlay hidden" id="ai-ui-overlay">
+                <div class="scanline"></div>
+                <!-- Top HUD -->
+                <div class="hud-top">
+                    <div class="glass-panel stat-box">
+                        <span class="stat-label">Model FPS</span>
+                        <span class="stat-value text-accent" id="fps-counter">30.0</span>
+                    </div>
+                    <div class="glass-panel stat-box">
+                        <span class="stat-label">Kick Angle</span>
+                        <span class="stat-value text-primary" id="angle-display">--°</span>
+                    </div>
+                </div>
+
+                <!-- Targeting reticle / box -->
+                <div class="reticle">
+                    <div class="corner top-left"></div>
+                    <div class="corner top-right"></div>
+                    <div class="corner bottom-left"></div>
+                    <div class="corner bottom-right"></div>
+                </div>
+
+                <!-- Bottom AI Feedback -->
+                <div class="hud-bottom glass-panel">
+                    <div class="ai-voice-container">
+                        <i class="fa-solid fa-wave-square text-secondary fa-pulse"></i>
+                        <div class="ai-text-wrapper">
+                            <span class="ai-label">AI COACH</span>
+                            <span class="cursor-typewriter text-gradient" id="ai-feedback-text">Ready for your first strike. Perform a roundhouse kick.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="camera-controls">
+            <button class="btn btn-primary btn-lg glow-effect" id="btn-start-camera" onclick="startCamera()">
+                <i class="fa-solid fa-play"></i> Start Analysis
+            </button>
+            <button class="btn btn-danger btn-lg hidden" id="btn-stop-camera" onclick="stopCamera()">
+                <i class="fa-solid fa-stop"></i> End Session
+            </button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

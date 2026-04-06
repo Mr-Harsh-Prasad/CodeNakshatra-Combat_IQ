@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Results | Combat IQ</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg-glow-wrapper">
+        <div class="bg-glow blob-2"></div>
+    </div>
+
+    <nav class="navbar glass-panel">
+        <div class="nav-brand" style="display: flex; align-items: center; gap: 1.5rem;">
+            <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.5rem;" title="Go back to Home Page">
+                <i class="fa-solid fa-home text-gradient"></i>
+                <span>Home</span>
+            </a>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <i class="fa-solid fa-chart-simple text-gradient"></i>
+                <span>Session Recap</span>
+            </div>
+        </div>
+        <a href="mode.html" class="btn btn-outline btn-sm"><i class="fa-solid fa-xmark"></i> Modes</a>
+    </nav>
+
+    <main class="container pt-24 pb-24 fade-in-up">
+        
+        <div class="result-dashboard grid-layout" style="margin-top: 3rem;">
+            
+            <!-- Score Card -->
+            <div class="glass-panel score-card text-center flex-center-col" style="min-height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <h3 class="text-muted mb-4" style="font-size: 1.25rem;">Overall Form Score</h3>
+                <div class="score-circle">
+                    <svg viewBox="0 0 36 36" class="circular-chart primary">
+                        <path class="circle-bg"
+                          d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                        <path class="circle progress-anim"
+                          stroke-dasharray="0, 100"
+                          d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                    </svg>
+                    <div class="score-number">
+                        <span class="num text-gradient">82</span>
+                        <span class="sub text-muted">/100</span>
+                    </div>
+                </div>
+                <div class="completion-status mt-6 text-success" style="font-size: 1.25rem; font-weight: 600;">
+                    <i class="fa-solid fa-medal"></i> Great Performance!
+                </div>
+            </div>
+
+            <!-- Stats Breakdown -->
+            <div class="glass-panel stats-card flex-col" style="min-height: 400px; display: flex; flex-direction: column; justify-content: center;">
+                <h3 class="mb-6" style="font-size: 1.5rem;"><i class="fa-solid fa-chart-line text-secondary"></i> Biomechanical Breakdown</h3>
+                
+                <div class="stat-bar-container">
+                    <div class="stat-header">
+                        <span>Chamber Speed</span>
+                        <span class="text-primary">90%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar fill-primary" style="width: 0%;" data-target="90%"></div>
+                    </div>
+                </div>
+
+                <div class="stat-bar-container mt-4">
+                    <div class="stat-header">
+                        <span>Pivot Rotation</span>
+                        <span class="text-warning">65%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar fill-warning" style="width: 0%;" data-target="65%"></div>
+                    </div>
+                </div>
+
+                <div class="stat-bar-container mt-4">
+                    <div class="stat-header">
+                        <span>Extension / Snap</span>
+                        <span class="text-success">88%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar fill-success" style="width: 0%;" data-target="88%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback Cards -->
+            <div class="glass-panel feedback-card alert-danger">
+                <h4><i class="fa-solid fa-circle-exclamation"></i> Points for Improvement</h4>
+                <ul class="feedback-list mt-4">
+                    <li>Your base foot did not pivot fully by 180°. Aim for full rotation to open your hips.</li>
+                    <li>Hands dropped during the kick. Keep your guard up to protect your head.</li>
+                </ul>
+            </div>
+
+            <div class="glass-panel feedback-card alert-success">
+                <h4><i class="fa-solid fa-check-circle"></i> Strengths</h4>
+                <ul class="feedback-list mt-4">
+                    <li>Excellent knee chambering height before execution.</li>
+                    <li>Snap recovery was incredibly fast (under 400ms).</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="result-actions text-center mt-12 mb-12">
+            <button class="btn btn-primary btn-lg glow-effect mr-4" onclick="window.location.href='camera.html'">
+                <i class="fa-solid fa-rotate-right"></i> Try Again
+            </button>
+            <button class="btn btn-outline btn-lg" onclick="window.location.href='mode.html'" style="margin-left: 1rem;">
+                <i class="fa-solid fa-list"></i> Select New Mode
+            </button>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
